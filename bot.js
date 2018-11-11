@@ -24,12 +24,12 @@ AWS.config.credentials.refresh(function(){
 	var accessKeyId = AWS.config.credentials.accessKeyId;
 	var secretAccessKey = AWS.config.credentials.secretAccessKey;
 	var sessionToken = AWS.config.credentials.sessionToken;
-
+	AWS.config.region = 'us-east-1';
 	apigClient = apigClientFactory.newClient({
 		accessKey: AWS.config.credentials.accessKeyId,
 		secretKey: AWS.config.credentials.secretAccessKey,
 		sessionToken: AWS.config.credentials.sessionToken, // this field was missing
-		region: 'us-east-2'
+		region: 'us-east-1'
 	});
 });
 
@@ -47,7 +47,7 @@ function chatbotResponse() {
 		let params = {};
 		let additionalParams = {
 			headers: {
-			"x-api-key" : 'API KEY REMOVED'
+			"x-api-key" : 'AaIi7HdmvmvZEIVo2riX1FLInuOdVlF2tm9hQNL6'
 		  }
 		};
 		var body = {
@@ -93,7 +93,11 @@ function newEntry() {
 			  if (messages[messages.length - i])
 				document.getElementById("chatlog" + i).innerHTML = messages[messages.length - i];
 			}
-		});
+		})
+		.catch( function(result){
+		  // Add error callback code here.
+		  console.log(result);
+		});;
 	}
 	catch(e) {
 		console.log(e);
